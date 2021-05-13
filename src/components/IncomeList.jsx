@@ -5,7 +5,6 @@ import IncomeTransaction from "./IncomeTransaction";
 const IncomeList = () => {
 	const { incomeTransactions } = useContext(GlobalContext);
 
-	console.log(incomeTransactions);
 	return (
 		<div className="transactions transactions-income">
 			<h2>Transaction History</h2>
