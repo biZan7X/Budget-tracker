@@ -37,6 +37,15 @@ export const GlobalStateProvider = ({ children }) => {
 		});
 	};
 
+	//^ action creator
+	const deleteTransaction = (id) => {
+		dispatch({
+			//^ action
+			type: "DELETE_TRANSACTION",
+			payload: id,
+		});
+	};
+
 	return (
 		<GlobalContext.Provider
 			value={{
@@ -44,6 +53,7 @@ export const GlobalStateProvider = ({ children }) => {
 				expenseTransactions: state.expenseTransactions,
 				addIncome,
 				addExpense,
+				deleteTransaction,
 			}}
 		>
 			{children}
