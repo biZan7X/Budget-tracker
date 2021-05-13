@@ -30,6 +30,8 @@ html {
 	grid-template-columns: minmax(38%, 40rem) repeat(2, minmax(29%, 29rem));
 	grid-template-rows: repeat(10, 1fr);
 	grid-gap: 1rem;
+	position: relative;
+	overflow: hidden;
 }
 
 .header {
@@ -274,6 +276,34 @@ input[type="number"]::-webkit-inner-spin-button {
 	text-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.4);
 	cursor: pointer;
 	outline: none;
+}
+
+.sign-out {
+	margin: 3rem;
+	padding: 2rem;
+	border-radius: 1rem;
+	border: none;
+	cursor: pointer;
+}
+
+.sign-out:hover {
+	background-color: #cf5856;
+	color: white;
+}
+
+.sign-in {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	padding: 2rem;
+	border-radius: 1rem;
+	border: none;
+	cursor: pointer;
+}
+
+.sign-in:hover {
+	background-color: #5a9b67;
+	color: white;
 }
 
 @media (max-width: 1500px) {

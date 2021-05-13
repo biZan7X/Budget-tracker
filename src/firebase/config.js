@@ -1,14 +1,16 @@
 import firebase from "firebase/app";
+import "firebase/auth";
 import "firebase/firestore";
 
 firebase.initializeApp({
-	apiKey: "AIzaSyAwV66qciTLd-5A0lxhQant2AiRnIZdej0",
-	authDomain: "budget-app-83561.firebaseapp.com",
-	projectId: "budget-app-83561",
-	storageBucket: "budget-app-83561.appspot.com",
-	messagingSenderId: "285842282505",
-	appId: "1:285842282505:web:0502dbff73f57b654cc0d8",
+	apiKey: "AIzaSyBNrAWjhOA55xpsEL4QwZsaYKeWdMjp-mY",
+	authDomain: "firegram-9dc99.firebaseapp.com",
+	projectId: "firegram-9dc99",
+	storageBucket: "firegram-9dc99.appspot.com",
+	messagingSenderId: "839019329071",
+	appId: "1:839019329071:web:237dc70701b42bec3ff8da",
 });
 
 export const db = firebase.firestore();
+export const auth = firebase.auth();
 export default firebase;

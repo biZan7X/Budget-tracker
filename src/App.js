@@ -8,17 +8,43 @@ import IncomeList from "./components/IncomeList";
 import ExpenseList from "./components/ExpenseList";
 //& context
 import { GlobalStateProvider } from "./context/GlobalState";
+//& firebase
+import { useAuthState } from "react-firebase-hooks/auth";
+import firebase, { auth } from "./firebase/config";
 
 const App = () => {
+	const [user] = useAuthState(auth);
+
+	const signIn = () => {
+		auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+	};
+
+	const RenderComponents = () => {
+		if (!user)
+			return (
+				<div className="btn-wrap">
+					<button className="sign-in" onClick={signIn}>
+						Sign In With Google
+					</button>
+				</div>
+			);
+
+		return (
+			<>
+				<Balance auth={auth} />
+				<AddTransaction auth={auth} />
+				<IncomeList auth={auth} />
+				<ExpenseList auth={auth} />
+			</>
+		);
+	};
+
 	return (
-		<GlobalStateProvider>
+		<GlobalStateProvider user={user} auth={auth}>
 			<div className="container">
 				<div className="app-wrapper">
 					<Header />
-					<Balance />
-					<AddTransaction />
-					<IncomeList />
-					<ExpenseList />
+					<RenderComponents />
 				</div>
 			</div>
 		</GlobalStateProvider>

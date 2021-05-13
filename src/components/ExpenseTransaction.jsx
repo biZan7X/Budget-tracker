@@ -1,9 +1,11 @@
 import React from "react";
 import { db } from "../firebase/config";
 
-const ExpenseTransaction = ({ expenseTransaction }) => {
+const ExpenseTransaction = ({ expenseTransaction, auth }) => {
 	const onClickHandler = (id) => {
-		db.collection("expenseTransactions").doc(id).delete();
+		db.collection(`users/${auth.currentUser.uid}/expenseTransactions`)
+			.doc(id)
+			.delete();
 	};
 	return (
 		<li className="transaction">

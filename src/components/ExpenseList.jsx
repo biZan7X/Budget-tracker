@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { GlobalContext } from "../context/GlobalState";
 import ExpenseTransaction from "./ExpenseTransaction";
 
-const ExpenseList = () => {
+const ExpenseList = ({ auth }) => {
 	const { expenseTransactions } = useContext(GlobalContext);
 	return (
 		<div className="transactions transactions-expense">
@@ -13,6 +13,7 @@ const ExpenseList = () => {
 						<ExpenseTransaction
 							key={expenseTransaction.id}
 							expenseTransaction={expenseTransaction}
+							auth={auth}
 						/>
 					))}
 			</ul>

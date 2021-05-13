@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { GlobalContext } from "../context/GlobalState";
 
-const Balance = () => {
+const Balance = ({ auth }) => {
 	const { incomeTransactions, expenseTransactions } =
 		useContext(GlobalContext);
 
@@ -15,6 +15,10 @@ const Balance = () => {
 	expenseTransactions.forEach(
 		(expenseTransaction) => (totalExpense += expenseTransaction.expenseAmount)
 	);
+
+	const signOut = () => {
+		auth.signOut();
+	};
 
 	return (
 		<div className="balance">
@@ -30,6 +34,9 @@ const Balance = () => {
 					<p>-₹{totalExpense.toFixed(2)}</p>
 				</div>
 			</div>
+			<button className="sign-out" onClick={signOut}>
+				sign out with Google
+			</button>
 		</div>
 	);
 };

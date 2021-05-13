@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { GlobalContext } from "../context/GlobalState";
 import IncomeTransaction from "./IncomeTransaction";
 
-const IncomeList = () => {
+const IncomeList = ({ auth }) => {
 	const { incomeTransactions } = useContext(GlobalContext);
 
 	return (
@@ -14,6 +14,7 @@ const IncomeList = () => {
 						<IncomeTransaction
 							key={incomeTransaction.id}
 							incomeTransaction={incomeTransaction}
+							auth={auth}
 						/>
 					))}
 			</ul>

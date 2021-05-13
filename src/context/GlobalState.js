@@ -8,12 +8,16 @@ const initialState = {
 
 export const GlobalContext = createContext(initialState);
 
-export const GlobalStateProvider = ({ children }) => {
+export const GlobalStateProvider = ({ children, user, auth }) => {
 	const [incomeTransactions, setIncomeTransactions] = useState([]);
 	const [expenseTransactions, setExpenseTransactions] = useState([]);
 
 	useEffect(() => {
-		const unsub = db.collection("incomeTransactions").onSnapshot((query) => {
+		console.log("invoked income");
+		const link = user
+			? `users/${auth.currentUser.uid}/incomeTransactions`
+			: "incomeTransactions";
+		const unsub = db.collection(link).onSnapshot((query) => {
 			setIncomeTransactions(
 				query.docs.map((doc) => ({
 					id: doc.id,
@@ -26,10 +30,14 @@ export const GlobalStateProvider = ({ children }) => {
 		return () => {
 			unsub();
 		};
-	});
+	}, [user]);
 
 	useEffect(() => {
-		const unsub = db.collection("expenseTransactions").onSnapshot((query) => {
+		console.log("invoked expense");
+		const link = user
+			? `users/${auth.currentUser.uid}/expenseTransactions`
+			: "expenseTransactions";
+		const unsub = db.collection(link).onSnapshot((query) => {
 			setExpenseTransactions(
 				query.docs.map((doc) => ({
 					id: doc.id,
@@ -42,7 +50,7 @@ export const GlobalStateProvider = ({ children }) => {
 		return () => {
 			unsub();
 		};
-	});
+	}, [user]);
 
 	return (
 		<GlobalContext.Provider

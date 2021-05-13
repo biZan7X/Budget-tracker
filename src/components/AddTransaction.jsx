@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import firebase, { db } from "../firebase/config";
 
-const AddTransaction = () => {
+const AddTransaction = ({ auth }) => {
 	const [income, setIncome] = useState({
 		incomeText: "",
 		incomeAmount: 0,
@@ -38,7 +38,9 @@ const AddTransaction = () => {
 		};
 
 		//~ storing the new object
-		db.collection("incomeTransactions").add(newIncomeTransaction);
+		db.collection(`users/${auth.currentUser.uid}/incomeTransactions`).add(
+			newIncomeTransaction
+		);
 
 		//~ resetting the input fields
 		setIncome({
@@ -61,7 +63,9 @@ const AddTransaction = () => {
 		};
 
 		//~ storing the new object
-		db.collection("expenseTransactions").add(newExpenseTransaction);
+		db.collection(`users/${auth.currentUser.uid}/expenseTransactions`).add(
+			newExpenseTransaction
+		);
 
 		//~ resetting the input fields
 		setExpense({
