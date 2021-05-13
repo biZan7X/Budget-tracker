@@ -1,23 +1,28 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useEffect, useReducer } from "react";
 import AppReducer from "./AppReducer";
 
 const initialState = {
-	incomeTransactions: [
-		{ id: 1, incomeText: "car sold", incomeAmount: 15000 },
-		{ id: 2, incomeText: "salary", incomeAmount: 150000 },
-		{ id: 3, incomeText: "jackpot", incomeAmount: 15000 },
-	],
-	expenseTransactions: [
-		{ id: 4, expenseText: "food", expenseAmount: 150 },
-		{ id: 5, expenseText: "phone", expenseAmount: 150 },
-		{ id: 6, expenseText: "travel", expenseAmount: 1500 },
-	],
+	incomeTransactions:
+		JSON.parse(localStorage.getItem("incomeTransactions")) || [],
+	expenseTransactions:
+		JSON.parse(localStorage.getItem("expenseTransactions")) || [],
 };
 
 export const GlobalContext = createContext(initialState);
 
 export const GlobalStateProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(AppReducer, initialState);
+
+	useEffect(() => {
+		localStorage.setItem(
+			"incomeTransactions",
+			JSON.stringify(state.incomeTransactions)
+		);
+		localStorage.setItem(
+			"expenseTransactions",
+			JSON.stringify(state.expenseTransactions)
+		);
+	});
 
 	//^ action creator
 	const addIncome = (incomeTransaction) => {

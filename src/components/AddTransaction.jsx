@@ -30,6 +30,9 @@ const AddTransaction = () => {
 	const onSubmitIncome = (e) => {
 		e.preventDefault();
 
+		if (incomeText === "" || incomeText === " ")
+			return alert("please add an income name");
+
 		//~ creating a new income transaction
 		const newIncomeTransaction = {
 			id: uuidv4(),
@@ -49,6 +52,9 @@ const AddTransaction = () => {
 
 	const onSubmitExpense = (e) => {
 		e.preventDefault();
+
+		if (expenseText === "" || expenseText === " ")
+			return alert("please add an expense name");
 
 		//~ creating a new income transaction
 		const newExpenseTransaction = {
