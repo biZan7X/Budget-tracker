@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
-import { GlobalContext } from "../context/GlobalState";
+import React from "react";
+import { db } from "../firebase/config";
 
 const ExpenseTransaction = ({ expenseTransaction }) => {
-	const { deleteTransaction } = useContext(GlobalContext);
+	const onClickHandler = (id) => {
+		db.collection("expenseTransactions").doc(id).delete();
+	};
 	return (
-		<li key={expenseTransaction.id} className="transaction">
+		<li className="transaction">
 			<span className="transaction-text">
 				{expenseTransaction.expenseText}
 			</span>
@@ -13,7 +15,7 @@ const ExpenseTransaction = ({ expenseTransaction }) => {
 			</span>
 			<button
 				className="delete-btn"
-				onClick={() => deleteTransaction(expenseTransaction.id)}
+				onClick={() => onClickHandler(expenseTransaction.id)}
 			>
 				<i className="fas fa-trash"></i>
 			</button>

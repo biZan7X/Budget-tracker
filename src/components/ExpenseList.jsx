@@ -10,7 +10,10 @@ const ExpenseList = () => {
 			<ul className="transaction-list">
 				{expenseTransactions &&
 					expenseTransactions.map((expenseTransaction) => (
-						<ExpenseTransaction expenseTransaction={expenseTransaction} />
+						<ExpenseTransaction
+							key={expenseTransaction.id}
+							expenseTransaction={expenseTransaction}
+						/>
 					))}
 			</ul>
 		</div>

@@ -11,7 +11,10 @@ const IncomeList = () => {
 			<ul className="transaction-list">
 				{incomeTransactions &&
 					incomeTransactions.map((incomeTransaction) => (
-						<IncomeTransaction incomeTransaction={incomeTransaction} />
+						<IncomeTransaction
+							key={incomeTransaction.id}
+							incomeTransaction={incomeTransaction}
+						/>
 					))}
 			</ul>
 		</div>
